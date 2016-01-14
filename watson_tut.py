@@ -3,6 +3,7 @@
 import sys
 import urllib
 import urllib2
+import json
 
 if len(sys.argv) != 2:
   print('Usage: ./watson_prog <hello in your language of choice>')
@@ -21,4 +22,5 @@ opener = urllib2.build_opener(authhandler)
 urllib2.install_opener(opener)
 
 response = urllib2.urlopen(url).read()
-print(response)
+
+print(json.loads(response))
