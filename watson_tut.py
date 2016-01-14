@@ -15,19 +15,17 @@ def f_call_watson (url, query):
     authhandler = urllib2.HTTPBasicAuthHandler(passman)
     opener = urllib2.build_opener(authhandler)
     urllib2.install_opener(opener)
-
+    return urllib2.urlopen(url).read()
 
 if len(sys.argv) != 2:
-  print('Usage: ./watson_prog <hello in your language of choice>')
+  print('Usage: ./watson_tut <hello in your language of choice>')
+  sys.exit()
 
-# curl -u "9fdda5be-7c24-4565-a13b-341d5098d806":"IaevO0SytB0m"  "https://gateway.watsonplatform.net/language-translation/api/v2/identifiable_languages"
-# url = "https://gateway.watsonplatform.net/language-translation/api/v2/identifiable_languages"
-# f_call_watson(url, "")
+url = "https://gateway.watsonplatform.net/language-translation/api/v2/identifiable_languages"
+ident_lang = json.loads(f_call_watson(url, ""))
 
-url = "https://gateway.watsonplatform.net/language-translation/api/v2/identify?text=come"
-f_call_watson(url, "")
+url = "https://gateway.watsonplatform.net/language-translation/api/v2/identify?text=" + sys.argv[1]
+lang_code = f_call_watson(url, "")
 
-
-response = urllib2.urlopen(url).read()
-
-print(json.loads(response))
+print(ident_lang)
+print(lang_code)
