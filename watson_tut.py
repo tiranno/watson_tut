@@ -36,3 +36,6 @@ for ent in ident_lang[u'languages']:
 print(lang_code)
 print(language)
 webbrowser.open("https://en.wikipedia.org/wiki/" + language + "_language")
+
+wikipedia.set_lang(lang_code)
+print(wikipedia.summary(language + "_language"))
